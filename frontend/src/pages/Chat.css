@@ -1,0 +1,135 @@
+.chat-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.chat-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chat-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-container textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  background-color: #fff;
+  color: #333;
+}
+
+.chat-container button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.answer {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.answer h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.answer p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Dark mode styles */
+body.dark .chat-container {
+  color: #e0e0e0;
+}
+
+body.dark .chat-container h2 {
+  color: #fff;
+}
+
+body.dark .chat-container textarea {
+  background-color: #2a2a2a;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+body.dark .chat-container textarea::placeholder {
+  color: #aaa;
+}
+
+body.dark .chat-container button {
+  background-color: #0056b3;
+}
+
+body.dark .chat-container button:disabled {
+  background-color: #666;
+}
+
+body.dark .answer {
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+}
+
+body.dark .answer h3 {
+  color: #fff;
+}
+
+body.dark .answer p {
+  color: #e0e0e0;
+}
+/* Dark mode styles */
+body.dark .chat-container {
+  color: #e0e0e0;
+}
+
+body.dark .chat-container h2 {
+  color: #fff;
+}
+
+body.dark .chat-container textarea {
+  background-color: #2a2a2a;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+body.dark .chat-container textarea::placeholder {
+  color: #aaa;
+}
+
+body.dark .chat-container button {
+  background-color: #0056b3;
+}
+
+body.dark .chat-container button:disabled {
+  background-color: #666;
+}
+
+body.dark .answer {
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+}
+
+body.dark .answer h3 {
+  color: #fff;
+}
+
+body.dark .answer p {
+  color: #e0e0e0;
+}

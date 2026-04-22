@@ -1,0 +1,58 @@
+.roomCard {
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-elev);
+  transition: 0.2s;
+  color: var(--text-primary);
+}
+
+.roomCard:hover {
+  transform: translateY(-5px);
+}
+
+/* 🖼️ ẢNH */
+.roomImg {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* HEADER */
+.roomCardHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.roomName {
+  font-size: 16px;
+}
+
+/* BODY */
+.roomCardBody {
+  padding: 0 10px 10px;
+  font-size: 14px;
+}
+
+/* ACTION */
+.roomCardActions {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.roomCardActions button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* BADGE */
+.badgeGreen {
+  color: green;
+}
+
+.badgeRed {
+  color: red;
+}

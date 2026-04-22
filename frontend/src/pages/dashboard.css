@@ -1,0 +1,63 @@
+.dashboard {
+  padding: 10px;
+}
+
+.dashboard h2 {
+  margin-bottom: 20px;
+}
+
+/* GRID */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: var(--surface);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-elev);
+  transition: 0.2s;
+  color: var(--text-primary);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* TITLE */
+.card h3 {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+/* VALUE */
+.card p {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* MONEY */
+.card.money {
+  background: #1abc9c;
+  color: white;
+}
+
+/* ===== CHART ===== */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.chart-box {
+  background: var(--surface);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-elev);
+  color: var(--text-primary);
+}

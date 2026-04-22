@@ -1,0 +1,142 @@
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  color: var(--text-primary);
+  padding: 14px 10px;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-color);
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 6px 8px 10px;
+}
+
+.sidebarTitle {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 12px;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  border: 1px solid var(--border-color);
+}
+
+.sidebarTitle:hover {
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+
+/* NAV */
+.sidebarNav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ITEM */
+.sidebarItem {
+  margin: 6px 0;
+}
+
+/* LINK */
+.sidebarItem a,
+.sidebarItem a:visited {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 11px 12px;
+  color: color-mix(in srgb, var(--text-primary) 65%, transparent);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+
+  border-radius: 14px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+/* ICON */
+.sidebarItem svg {
+  font-size: 16px;
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+/* HOVER */
+.sidebarItem:hover a {
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.sidebarItem:hover svg {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* ACTIVE (NavLink adds .active) */
+.sidebarItem a.active {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border-color));
+}
+
+/* ICON ACTIVE */
+.sidebarItem a.active svg {
+  color: var(--text-primary);
+  opacity: 1;
+}
+
+/* CLICK EFFECT */
+.sidebarItem a:active {
+  transform: scale(0.97);
+}
+
+/* Mobile: sidebar drawer */
+.sidebarOverlay {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sidebarOverlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 50;
+  }
+
+  .sidebarOverlay.isOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-105%);
+    transition: transform 0.22s ease;
+    z-index: 60;
+  }
+
+  .sidebar.isOpen {
+    transform: translateX(0);
+  }
+
+  /* no close button: close via overlay or nav click */
+}

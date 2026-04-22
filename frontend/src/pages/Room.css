@@ -1,0 +1,61 @@
+/* HEADER */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* SEARCH */
+.search {
+  padding: 10px 14px;
+  width: 280px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-2);
+  color: var(--text-primary);
+  outline: none;
+  transition: 0.2s;
+}
+
+.search:focus {
+  border-color: #1890ff;
+  box-shadow: 0 0 5px rgba(24, 144, 255, 0.3);
+}
+
+/* GRID */
+.roomGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 🔥 1 hàng 3 phòng */
+  gap: 25px;
+}
+
+/* LOADING */
+.loading {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .roomGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .roomGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .search {
+    width: 100%;
+  }
+}

@@ -1,0 +1,406 @@
+:root {
+  /* Theme tokens (light defaults; overridden by body.light/body.dark) */
+  --app-bg: #f5f6fa;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: rgba(15, 23, 42, 0.12);
+  --shadow-elev:
+    rgba(2, 6, 23, 0.08) 0 10px 15px -3px,
+    rgba(2, 6, 23, 0.05) 0 4px 6px -2px;
+
+  /* Existing tokens used in app/css */
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text-primary);
+  background: var(--app-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+  
+}
+
+body.light {
+  --app-bg: #f5f6fa;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: rgba(15, 23, 42, 0.12);
+  --shadow-elev:
+    rgba(2, 6, 23, 0.08) 0 10px 15px -3px,
+    rgba(2, 6, 23, 0.05) 0 4px 6px -2px;
+}
+
+body.dark {
+  --app-bg: #0b1220;
+  --surface: #111a2e;
+  --surface-2: #0f172a;
+  --text-primary: #e5e7eb;
+  --text-secondary: #cbd5e1;
+  --border-color: rgba(148, 163, 184, 0.22);
+  --shadow-elev:
+    rgba(0, 0, 0, 0.55) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.35) 0 4px 6px -2px;
+}
+
+body {
+  margin: 0;
+  background: var(--app-bg);
+  color: var(--text-primary);
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+/* App-wide darkmode fixes: avoid hard-coded whites */
+.main {
+  background: var(--app-bg);
+}
+
+.navbar,
+.topbar {
+  background: var(--surface);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.topbarTitle {
+  color: var(--text-primary);
+}
+
+.card,
+.chart-box,
+.roomCard,
+.modalContent,
+.login-box {
+  background: var(--surface);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-elev);
+}
+
+.card h3 {
+  color: var(--text-secondary);
+}
+
+input,
+select,
+textarea {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+table {
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+th,
+td {
+  border-color: var(--border-color) !important;
+}
+
+th {
+  background: color-mix(in srgb, var(--surface) 70%, var(--surface-2));
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.appShell {
+  display: flex;
+  min-height: 100svh;
+}
+
+.sidebar {
+  width: 260px;
+  background: #0f2d4a;
+  color: #fff;
+  padding: 18px 14px;
+}
+
+.sidebarTitle {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin: 6px 10px 14px;
+}
+
+.sidebarNav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.sidebarItem {
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #d7e6f6;
+}
+
+.sidebarItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebarItemActive {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.topbarTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.topbarActions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  background: #f59e0b;
+  color: #fff;
+}
+
+.btnBlue {
+  background: #2563eb;
+  color: #fff;
+}
+
+.content {
+  padding: 14px 16px 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roomCard {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(2, 6, 23, 0.06);
+}
+
+.roomCardHeader {
+  padding: 10px 12px;
+  background: #38bdf8;
+  color: #083344;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.roomCardBody {
+  padding: 10px 12px;
+  display: grid;
+  gap: 6px;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.badgeGreen {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+
+.badgeRed {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+
+.roomCardActions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px 12px;
+}
+
+.btnSm {
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-weight: 700;
+  font-size: 13px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #fff;
+  cursor: pointer;
+}
+
+.btnSm:hover {
+  background: rgba(2, 6, 23, 0.04);
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+/* Keep legacy selectors but rely on tokens above */
+body.light {
+  background: var(--app-bg);
+  color: var(--text-primary);
+}
+
+body.dark {
+  background: var(--app-bg);
+  color: var(--text-primary);
+}
+
+/* Card */
+body.dark .card {
+  background: #2a2a40;
+}
+
+/* Sidebar */
+body.dark .sidebar {
+  background: #1a1a2e;
+}

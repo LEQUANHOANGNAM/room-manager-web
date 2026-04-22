@@ -1,0 +1,241 @@
+/* Design system primitives */
+:root {
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.uiPage {
+  display: grid;
+  gap: 14px;
+}
+
+.uiHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.uiTitle {
+  display: grid;
+  gap: 2px;
+}
+
+.uiTitle h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+
+.uiTitle p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.uiHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.uiCard {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-elev);
+  color: var(--text-primary);
+}
+
+.uiCardBody {
+  padding: 14px;
+}
+
+.uiRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.uiField {
+  display: grid;
+  gap: 6px;
+}
+
+.uiLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.uiInput,
+.uiSelect,
+.uiTextarea {
+  width: 100%;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.uiTextarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.uiInput:focus,
+.uiSelect:focus,
+.uiTextarea:focus {
+  border-color: color-mix(in srgb, var(--accent) 65%, var(--border-color));
+  box-shadow: var(--ring);
+}
+
+.uiButton {
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font-weight: 800;
+  cursor: pointer;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+}
+
+.uiButton:hover {
+  background: color-mix(in srgb, var(--surface-2) 70%, var(--surface));
+  border-color: var(--border-color);
+}
+
+.uiButton:active {
+  transform: translateY(1px);
+}
+
+.uiButtonPrimary {
+  background: var(--accent);
+  color: #0b1020;
+  border-color: color-mix(in srgb, var(--accent) 65%, #000);
+}
+
+.uiButtonPrimary:hover {
+  background: color-mix(in srgb, var(--accent) 85%, #fff);
+}
+
+.uiButtonDanger {
+  background: rgba(239, 68, 68, 0.18);
+  color: #fecaca;
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+.uiButtonGhost {
+  background: transparent;
+  border-color: var(--border-color);
+}
+
+.uiBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--surface) 75%, var(--surface-2));
+  color: var(--text-primary);
+}
+
+.uiBadgeSuccess {
+  background: rgba(16, 185, 129, 0.16);
+  color: #86efac;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.uiBadgeDanger {
+  background: rgba(239, 68, 68, 0.16);
+  color: #fecaca;
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+.uiBadgeWarn {
+  background: rgba(245, 158, 11, 0.16);
+  color: #fde68a;
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.uiDivider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 10px 0;
+  opacity: 0.7;
+}
+
+.uiTableWrap {
+  overflow: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.uiTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+.uiTable th,
+.uiTable td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.uiTable th {
+  position: sticky;
+  top: 0;
+  background: color-mix(in srgb, var(--surface) 70%, var(--surface-2));
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-secondary);
+  z-index: 1;
+}
+
+.uiHint {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.uiPagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.uiPaginationLeft,
+.uiPaginationRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.uiPaginationMeta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
