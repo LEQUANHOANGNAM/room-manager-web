@@ -38,47 +38,68 @@ export const getPaymentById = async (req, res) => {
 // ================= PAY BILL =================
 export const payBill = async (req, res) => {
   try {
-    const payment = await Payment.findById(req.params.id).populate("roomId");
+    const payment = await Payment.findById(req.params.id).populate({
+      path: "roomId",
+      populate: {
+        path: "tenant",
+      },
+    });
 
     if (!payment) {
       return res.status(404).json({ message: "Không tìm thấy hóa đơn" });
     }
-    
+
     if (payment.status === "paid") {
       return res.status(400).json({ message: "Đã thanh toán rồi" });
     }
 
     const tenant = payment.roomId?.tenant;
 
-  
+    console.log("DEBUG PAY:", {
+      paymentId: payment._id,
+      room: payment.roomId?.name,
+      tenant,
+    });
+
+    // fallback tenantName
     if (!payment.tenantName) {
       payment.tenantName = tenant?.name || "Unknown";
     }
 
+    // cập nhật trạng thái thanh toán
     payment.status = "paid";
     payment.paidAt = new Date();
     payment.transactionId = "FAKE_" + Date.now();
 
     await payment.save();
 
-    // gửi mail xác nhận
+    // gửi mail nếu có email
     const email = tenant?.email?.trim();
 
     if (email) {
-      await sendMail(
-        email,
-        "Thanh toán thành công",
-        `Xin chào ${tenant.name},
+      try {
+        await sendMail(
+          email,
+          "Thanh toán thành công",
+          `Xin chào ${tenant.name},
 
 Bạn đã thanh toán ${payment.amount} VNĐ cho tháng ${payment.month}.
 Phòng: ${payment.roomId.name}
 
 Cảm ơn bạn!`
-      );
+        );
+
+        console.log("✅ Đã gửi mail cho:", email);
+      } catch (err) {
+        console.log("❌ Lỗi gửi mail:", err);
+      }
+    } else {
+      console.log("❌ Tenant không có email");
     }
 
     res.json(payment);
   } catch (err) {
+    console.log("❌ PAY BILL ERROR:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -132,6 +153,7 @@ export const testCreateBill = async (req, res) => {
   }
 };
 
+
 // ================= SEND REMINDER =================
 export const testSendReminder = async (req, res) => {
   try {
@@ -141,13 +163,23 @@ export const testSendReminder = async (req, res) => {
     const payments = await Payment.find({
       status: "pending",
       month: currentMonth,
-    }).populate("roomId");
+    }).populate({
+      path: "roomId",
+      populate: {
+        path: "tenant",
+      },
+    });
 
     let sent = 0;
     let skipped = 0;
 
     for (let p of payments) {
       const tenant = p.roomId?.tenant;
+
+      console.log("DEBUG:", {
+        room: p.roomId?.name,
+        tenant,
+      });
 
       if (!tenant) {
         skipped++;
@@ -156,11 +188,12 @@ export const testSendReminder = async (req, res) => {
 
       const email = tenant.email?.trim();
       if (!email) {
+        console.log("❌ Không có email:", tenant);
         skipped++;
         continue;
       }
 
-      // ❌ KHÔNG cho gửi nếu chưa nhập điện nước
+      // ❌ chưa nhập điện nước thì skip
       if (!p.electricNumber || !p.waterNumber) {
         console.log("❌ Chưa nhập điện nước:", p.roomId.name);
         skipped++;
@@ -199,7 +232,7 @@ ${p.qrCodeUrl}
 
         sent++;
       } catch (err) {
-        console.log("❌ Mail lỗi:", err.message);
+        console.log("❌ Mail lỗi FULL:", err);
       }
     }
 

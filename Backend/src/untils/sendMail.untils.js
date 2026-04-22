@@ -11,6 +11,18 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false, // 🔥 FIX lỗi self-signed
+  },
+});
+
+// test kết nối SMTP (debug rất hữu ích)
+transporter.verify((err, success) => {
+  if (err) {
+    console.log("❌ SMTP ERROR:", err);
+  } else {
+    console.log("✅ SMTP READY");
+  }
 });
 
 export const sendMail = async (to, subject, text, filePath = null) => {
@@ -30,9 +42,9 @@ export const sendMail = async (to, subject, text, filePath = null) => {
         : [],
     });
 
-    console.log("✅ Mail sent");
+    console.log("✅ Mail sent to:", to);
   } catch (err) {
-    console.log("❌ Send mail error:", err.message);
+    console.log("❌ Send mail error:", err);
     throw err;
   }
 };
